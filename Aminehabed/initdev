@@ -1,0 +1,90 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+  then
+    echo "Expected arguments, please check the help : initdev –help"
+    exit 1
+fi
+
+if [ $# -eq 1 ]
+  then
+    if [[ $1 == "-help" ]]; then
+        echo "
+            — Name : PROJETDEPAPEL, Cette application crée une arboréscence avec des répertoires et des fichiers spécifiques à l'utilisateur suivant le language de programmation ou l'éditeur de texte utilisé(c, c++, cpp, python, latex...) et suivant les licences souhaités (GPL, MIT...)
+            — Syntax : ./initdev <nom-project> <type-de-langage>  <type de license> .
+            — args : -C : quand le language utilisé est le #c.
+                     -C++ : quand le language utilisé est le #c++.
+                     -CPP : quand le language utilisé est le #c++ aussi.
+                     -PY : quand le language utilisé est le #python.
+                     -Latex : quand l'éditeurde textes utilisé est le #latex.
+                     -GPL: quand la licence souhaité est #GPL
+                     -MIT: quand la licence souhaité est #MIT
+            — author :Amine_HABET contact : mhabet@list.ru  "
+    else
+        mkdir -p $1/{bin,gitignores,sources,}
+        touch $1/main
+        touch $1/license
+        touch $1/makefile
+        touch $1/install.sh
+        exit 0
+    fi
+fi
+
+
+
+  
+    mkdir -p $1/{bin,gitignores,sources}
+    touch $1/LICENSE
+    touch $1/makefile
+    touch $1/install.sh
+   
+if [ $# -eq 2 ]
+       then
+ if [[ $2 == "-C" ]]; 
+        then
+         cp ./sources/main.c $1/main.c
+        elif [[ $2 == "-CPP" ]]; then
+         cp ./sources/main.cpp $1/main.cpp
+          elif [[ $2 == "-C++" ]]; then
+         cp ./sources/main.cpp $1/main.cpp
+          elif [[ $2 == "-Py" ]]; then
+           cp ./sources/main.py $1/main.py
+           elif  [[ $2 == "-Latex" ]]; then
+         cp ./sources/latexMin.tex $1/main.tex
+           elif [[ $2 == "-BEAMER" ]]; then
+         cp ./sources/beamer.tex $1/main.tex
+          
+ 	 else
+
+       
+        echo "Uknown arguments, please check the help : initdev –help"
+          
+        exit 1
+
+  fi
+fi
+
+    if [ $# -eq 3 ] 
+
+        then
+       if [[ $3 == "-GPL" ]]; then
+      
+         cp ./licenses/GPL $1/LICENSE
+
+	   elif [[ $3 == "-MIT" ]]; then
+
+	 cp ./licenses/MIT $1/LICENSE
+
+            else 
+          echo "Uknown arguments, please check the help : initdev -help"
+
+          exit 1
+        
+       fi
+    fi
+
+         
+
+      
+  
+
